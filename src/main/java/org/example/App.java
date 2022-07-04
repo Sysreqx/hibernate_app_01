@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class App
 {
     public static void main( String[] args )
@@ -18,8 +20,16 @@ public class App
         try {
             session.beginTransaction();
 
-            Person person1 = session.get(Person.class, 1);
-            person1.setName("New name");
+            // Select
+            List<Person> people = session.createQuery("FROM Person where age >= 30").getResultList();
+
+            for (Person person : people) {
+                System.out.println(person);
+            }
+
+            // Update
+            session.createQuery("update Person set name ='Test' where age < 30")
+                            .executeUpdate();
 
             session.getTransaction().commit();
         } finally {
