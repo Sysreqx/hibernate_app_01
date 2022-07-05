@@ -26,6 +26,11 @@ public class Item {
         this.item_name = item_name;
     }
 
+    public Item(String item_name, Person owner) {
+        this.item_name = item_name;
+        this.owner = owner;
+    }
+
     public int getId() {
         return id;
     }
@@ -54,7 +59,6 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", person_id=" + person_id +
                 ", item_name='" + item_name + '\'' +
                 '}';
     }
